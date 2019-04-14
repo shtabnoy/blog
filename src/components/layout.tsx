@@ -9,10 +9,11 @@ import * as React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "@emotion/styled"
 import Header from "./header"
+import "./layout.css"
 
 const Content = styled.div`
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 32px;
   max-width: 960px;
 `
 

@@ -15,9 +15,6 @@ interface IndexPageProps {
 const IndexPage = ({ data, location }: IndexPageProps) => (
   <Layout pathname={location.pathname}>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
     <ul>
       {data.allStrapiArticle.edges.map((document: any) => (
         <li key={document.node.id}>
@@ -27,7 +24,6 @@ const IndexPage = ({ data, location }: IndexPageProps) => (
         </li>
       ))}
     </ul>
-    <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )
 
