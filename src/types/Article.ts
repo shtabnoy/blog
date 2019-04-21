@@ -8,7 +8,7 @@ interface Category {
   name: string
 }
 
-interface Translation {
+export interface Translation {
   id: string
   language: "en" | "ru"
   title: string

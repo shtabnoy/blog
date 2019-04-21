@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 import styled from "@emotion/styled"
 import colors from "../utils/colors"
 import { css } from "@emotion/core"
-import Article from "../types/Article"
+import Article, { Translation } from "../types/Article"
 
 interface IndexPageProps {
   data: any // TODO: make proper interface
@@ -50,9 +50,8 @@ const IndexPage = ({ data, location }: IndexPageProps) => (
         // .filter(({ node }) => Object.keys(selectedCategories)
         //     .every(category => node.categories.map(c => c.id).includes(category)))
         .map(({ node: article }: { node: Article }) => {
-          console.log(article.translations)
           const translation = article.translations.find(
-            (tr: any) => tr.language === defaultLang
+            (tr: Translation) => tr.language === defaultLang
           )
 
           if (!translation) return
@@ -117,7 +116,7 @@ const IndexPage = ({ data, location }: IndexPageProps) => (
                   `}
                 >
                   <ALink
-                    to={article.author.id}
+                    to={article.author.id.toString()}
                     css={css`
                       margin-right: 16px;
                     `}
