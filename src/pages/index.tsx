@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 import styled from "@emotion/styled"
 import colors from "../utils/colors"
 import { css } from "@emotion/core"
+import Article from "../types/Article"
 
 interface IndexPageProps {
   data: any // TODO: make proper interface
@@ -25,10 +26,19 @@ const List = styled.ul`
     padding: 24px 0;
     h2 {
       margin-top: 0;
+      margin-bottom: 4px;
     }
     p {
       font-size: 20px;
     }
+  }
+`
+
+const ALink = styled(Link)`
+  color: ${colors.mountainMeadow};
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
 `
 
@@ -39,35 +49,91 @@ const IndexPage = ({ data, location }: IndexPageProps) => (
       {data.allStrapiArticle.edges
         // .filter(({ node }) => Object.keys(selectedCategories)
         //     .every(category => node.categories.map(c => c.id).includes(category)))
-        .map(({ node }: { node: any }) => {
-          console.log(node.translations)
-          const translation =
-            node.translations.find((tr: any) => tr.language === defaultLang) ||
-            {}
+        .map(({ node: article }: { node: Article }) => {
+          console.log(article.translations)
+          const translation = article.translations.find(
+            (tr: any) => tr.language === defaultLang
+          )
 
+          if (!translation) return
+
+          const languages = article.translations.map(tr => tr.language)
           // return translation.title.toLowerCase()
           //     .indexOf(searchtext.toLowerCase()) > -1 &&
           return (
-            <li key={node.id}>
+            <li key={article.id}>
               {/* <ArticleHeader
-                          article={node}
+                          article={article}
                           addCategoryToTheFilter={this.addCategoryToTheFilter}
                       /> */}
-              <h2>
-                <Link
-                  to={node.id}
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 4px;
+                `}
+              >
+                <h2>
+                  <ALink to={article.id}>{translation.title}</ALink>
+                </h2>
+                <div
                   css={css`
-                    color: ${colors.mountainMeadow};
-                    text-decoration: none;
-                    &:hover {
-                      text-decoration: underline;
-                    }
-                    /* display: block; */
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    justify-content: flex-end;
                   `}
                 >
-                  {translation.title}
-                </Link>
-              </h2>
+                  {article.categories.map(category => (
+                    <span
+                      key={category.id}
+                      css={css`
+                        font-size: 16px;
+                        background-color: ${colors.shakespeare};
+                        color: white;
+                        padding: 2px 12px;
+                        border-radius: 12px;
+                        cursor: pointer;
+                        white-space: nowrap;
+                        &:not(:first-child) {
+                          margin-left: 10px;
+                        }
+                      `}
+                    >
+                      {category.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                `}
+              >
+                <div
+                  css={css`
+                    color: ${colors.mountainMeadow};
+                  `}
+                >
+                  <ALink
+                    to={article.author.id}
+                    css={css`
+                      margin-right: 16px;
+                    `}
+                  >
+                    {article.author.fullName}
+                  </ALink>
+                  <span>{article.published}</span>
+                </div>
+                <div
+                  css={css`
+                    color: ${colors.shakespeare};
+                  `}
+                >
+                  &#123; {languages.join(", ")} &#125;
+                </div>
+              </div>
               <p>{translation.description}</p>
             </li>
           )
@@ -88,6 +154,7 @@ export const pageQuery = graphql`
           published(formatString: "MMMM Do, YYYY")
           author {
             id
+            fullName
           }
           categories {
             id
