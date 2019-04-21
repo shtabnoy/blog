@@ -73,7 +73,7 @@ const IndexPage = ({ data, location }: IndexPageProps) => (
                 `}
               >
                 <h2>
-                  <ALink to={article.id}>{translation.title}</ALink>
+                  <ALink to={`/${article.id}`}>{translation.title}</ALink>
                 </h2>
                 <div
                   css={css`
@@ -94,7 +94,7 @@ const IndexPage = ({ data, location }: IndexPageProps) => (
                         border-radius: 12px;
                         cursor: pointer;
                         white-space: nowrap;
-                        &:not(:first-child) {
+                        &:not(:first-of-type) {
                           margin-left: 10px;
                         }
                       `}
@@ -116,7 +116,7 @@ const IndexPage = ({ data, location }: IndexPageProps) => (
                   `}
                 >
                   <ALink
-                    to={article.author.id.toString()}
+                    to={`/authors/${article.author.id.toString()}`}
                     css={css`
                       margin-right: 16px;
                     `}

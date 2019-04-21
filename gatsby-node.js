@@ -40,7 +40,7 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
       createPage({
         path: `/${node.id}`,
-        component: path.resolve("src/pages/article.tsx"),
+        component: path.resolve("src/templates/article.tsx"),
         context: {
           id: node.id,
         },
@@ -65,7 +65,7 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiUser.edges.forEach(({ node }) => {
       createPage({
         path: `authors/${node.id}`,
-        component: path.resolve("src/pages/user.tsx"),
+        component: path.resolve("src/templates/user.tsx"),
         context: {
           id: node.id,
         },

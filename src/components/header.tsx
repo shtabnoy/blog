@@ -50,10 +50,10 @@ const Logo = styled.svg`
     stroke: ${colors.shakespeare};
     stroke-width: 2;
     fill: none;
-    &:nth-child(2) {
+    &:nth-of-type(2) {
       transform: translateX(17px);
     }
-    &:nth-child(3) {
+    &:nth-of-type(3) {
       transform: translateX(34px);
     }
   }
@@ -62,13 +62,13 @@ const Logo = styled.svg`
     stroke-dasharray: 200;
     animation: ${dash} 1s linear forwards;
   }
-  &:hover polygon:nth-child(1) {
+  &:hover polygon:nth-of-type(1) {
     animation: ${fading} 0.7s ease-in-out 0.2s forwards;
   }
-  &:hover polygon:nth-child(2) {
+  &:hover polygon:nth-of-type(2) {
     animation: ${fading} 0.7s ease-in-out 0.1s forwards;
   }
-  &:hover polygon:nth-child(3) {
+  &:hover polygon:nth-of-type(3) {
     animation: ${fading} 0.7s ease-in-out forwards;
   }
 `
