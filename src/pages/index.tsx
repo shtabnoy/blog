@@ -21,11 +21,7 @@ const List = styled.ul`
   margin: 0;
   padding: 0;
   li {
-    padding: 24px 0;
-    h2 {
-      margin-top: 0;
-      margin-bottom: 4px;
-    }
+    padding-top: 24px;
     p {
       font-size: 20px;
     }

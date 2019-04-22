@@ -8,6 +8,10 @@ const TopSection = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 4px;
+  h2 {
+    margin-top: 0;
+    margin-bottom: 4px;
+  }
   .categories {
     display: flex;
     align-items: center;
