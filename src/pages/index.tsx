@@ -2,12 +2,10 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-// import Image from "../components/image"
 import SEO from "../components/seo"
 import styled from "@emotion/styled"
-import colors from "../utils/colors"
-import { css } from "@emotion/core"
 import Article, { Translation } from "../types/Article"
+import ArticleHeader from "../components/articleHeader"
 
 interface IndexPageProps {
   data: any // TODO: make proper interface
@@ -34,22 +32,12 @@ const List = styled.ul`
   }
 `
 
-const ALink = styled(Link)`
-  color: ${colors.mountainMeadow};
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
 const IndexPage = ({ data, location }: IndexPageProps) => (
   <Layout pathname={location.pathname}>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <List>
-      {data.allStrapiArticle.edges
-        // .filter(({ node }) => Object.keys(selectedCategories)
-        //     .every(category => node.categories.map(c => c.id).includes(category)))
-        .map(({ node: article }: { node: Article }) => {
+      {data.allStrapiArticle.edges.map(
+        ({ node: article }: { node: Article }) => {
           const translation = article.translations.find(
             (tr: Translation) => tr.language === defaultLang
           )
@@ -57,86 +45,22 @@ const IndexPage = ({ data, location }: IndexPageProps) => (
           if (!translation) return
 
           const languages = article.translations.map(tr => tr.language)
-          // return translation.title.toLowerCase()
-          //     .indexOf(searchtext.toLowerCase()) > -1 &&
+
           return (
             <li key={article.id}>
-              {/* <ArticleHeader
-                          article={article}
-                          addCategoryToTheFilter={this.addCategoryToTheFilter}
-                      /> */}
-              <div
-                css={css`
-                  display: flex;
-                  justify-content: space-between;
-                  margin-bottom: 4px;
-                `}
-              >
-                <h2>
-                  <ALink to={`/${article.id}`}>{translation.title}</ALink>
-                </h2>
-                <div
-                  css={css`
-                    display: flex;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    justify-content: flex-end;
-                  `}
-                >
-                  {article.categories.map(category => (
-                    <span
-                      key={category.id}
-                      css={css`
-                        font-size: 16px;
-                        background-color: ${colors.shakespeare};
-                        color: white;
-                        padding: 2px 12px;
-                        border-radius: 12px;
-                        cursor: pointer;
-                        white-space: nowrap;
-                        &:not(:first-of-type) {
-                          margin-left: 10px;
-                        }
-                      `}
-                    >
-                      {category.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div
-                css={css`
-                  display: flex;
-                  justify-content: space-between;
-                `}
-              >
-                <div
-                  css={css`
-                    color: ${colors.mountainMeadow};
-                  `}
-                >
-                  <ALink
-                    to={`/authors/${article.author.id.toString()}`}
-                    css={css`
-                      margin-right: 16px;
-                    `}
-                  >
-                    {article.author.fullName}
-                  </ALink>
-                  <span>{article.published}</span>
-                </div>
-                <div
-                  css={css`
-                    color: ${colors.shakespeare};
-                  `}
-                >
-                  &#123; {languages.join(", ")} &#125;
-                </div>
-              </div>
+              <ArticleHeader
+                id={article.id}
+                title={translation.title}
+                categories={article.categories}
+                author={article.author}
+                published={article.published}
+                languages={languages}
+              />
               <p>{translation.description}</p>
             </li>
           )
-        })}
+        }
+      )}
     </List>
   </Layout>
 )

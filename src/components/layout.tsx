@@ -9,12 +9,38 @@ import * as React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "@emotion/styled"
 import Header from "./header"
-import "./layout.css"
+import colors from "../utils/colors"
 
 const Content = styled.div`
   margin: 0 auto;
   padding: 0 32px;
   max-width: 960px;
+  &,
+  input {
+    font-family: "Quattrocento Sans", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Work Sans", sans-serif;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  a {
+    color: ${colors.mountainMeadow};
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `
 
 interface LayoutProps {
