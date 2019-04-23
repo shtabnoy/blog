@@ -44,9 +44,29 @@ const Content = styled.div`
     }
   }
 
-  p {
+  p,
+  ol {
     font-size: 20px;
     line-height: 28px;
+    color: hsla(0, 0%, 0%, 0.8);
+  }
+
+  ol {
+    padding: 0;
+    margin-left: 28px;
+    margin-bottom: 28px;
+    margin-top: 0;
+    li {
+      margin-bottom: 14px;
+    }
+  }
+
+  blockquote {
+    font-style: italic;
+    color: hsla(0, 0%, 0%, 0.65);
+    border-left: 2px solid ${colors.mountainMeadow};
+    margin: 0;
+    padding-left: 20px;
   }
 `
 

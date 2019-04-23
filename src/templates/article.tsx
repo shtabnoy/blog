@@ -20,7 +20,24 @@ const defaultLang: string = "en"
 
 const MathComponent = ({ children, inline }: any) => {
   return (
-    <MathJax.Provider>
+    <MathJax.Provider
+      options={{
+        styles: {
+          ".MJXc-display": {
+            color: `${colors.shakespeare}`,
+            "font-size": "20px !important",
+            "border-top": `1px solid ${colors.shakespeare} !important`,
+            "border-bottom": `1px solid ${colors.shakespeare} !important`,
+            padding: "15px 0px !important",
+            outline: "none",
+          },
+          ".MathJax_CHTML": {
+            color: `${colors.shakespeare}`,
+            outline: "none",
+          },
+        },
+      }}
+    >
       <MathJax.Node inline={inline}>{children}</MathJax.Node>
     </MathJax.Provider>
   )
