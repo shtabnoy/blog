@@ -20,12 +20,6 @@ const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  li {
-    padding-top: 24px;
-    p {
-      font-size: 20px;
-    }
-  }
 `
 
 const IndexPage = ({ data, location }: IndexPageProps) => (

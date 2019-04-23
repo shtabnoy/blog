@@ -7,10 +7,11 @@ import { Category, Author } from "../types/Article"
 const TopSection = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-top: 24px;
+  margin-bottom: 8px;
   h2 {
     margin-top: 0;
-    margin-bottom: 4px;
+    margin-bottom: 0;
   }
   .categories {
     display: flex;

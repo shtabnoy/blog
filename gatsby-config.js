@@ -47,6 +47,7 @@ module.exports = {
         fonts: [
           {
             family: `Quattrocento Sans`,
+            variants: ["400", "700"],
           },
           {
             family: `Work Sans`,

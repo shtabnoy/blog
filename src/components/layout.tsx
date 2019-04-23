@@ -15,6 +15,8 @@ const Content = styled.div`
   margin: 0 auto;
   padding: 0 32px;
   max-width: 960px;
+  box-sizing: border-box;
+
   &,
   input {
     font-family: "Quattrocento Sans", sans-serif;
@@ -40,6 +42,11 @@ const Content = styled.div`
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 28px;
   }
 `
 

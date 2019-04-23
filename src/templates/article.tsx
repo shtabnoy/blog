@@ -7,6 +7,7 @@ import * as MathJax from "@nteract/mathjax"
 import { Translation } from "../types/Article"
 import css from "@emotion/css"
 import ArticleHeader from "../components/articleHeader"
+import colors from "../utils/colors"
 
 interface ArticlePageProps {
   data: any // TODO: proper
@@ -18,19 +19,16 @@ interface ArticlePageProps {
 const defaultLang: string = "en"
 
 const MathComponent = ({ children, inline }: any) => {
-  console.log(children)
   return (
     <MathJax.Provider>
-      {/* <MathJax.Context> */}
       <MathJax.Node inline={inline}>{children}</MathJax.Node>
-      {/* </MathJax.Context> */}
     </MathJax.Provider>
   )
 }
 
 const md = css`
   p:first-child::first-letter {
-    color: #1d9c81;
+    color: ${colors.mountainMeadow};
     font-size: 45px;
     line-height: 53px;
     float: left;
@@ -47,13 +45,11 @@ const ArticlePage = ({
   data: { strapiArticle: article },
   location,
 }: ArticlePageProps) => {
-  // console.log(data)
   const [language, setLanguage] = React.useState(defaultLang)
   const translation = article.translations.find(
     (tr: Translation) => tr.language === language
   )
   const languages = article.translations.map((tr: Translation) => tr.language)
-  console.log(translation.content)
   return (
     <Layout pathname={location.pathname}>
       <ArticleHeader
@@ -75,13 +71,6 @@ const ArticlePage = ({
         }}
       >
         {translation.content}
-        {/* {`...
-sd
-
-        <Math>x^2</Math>
-
-        ...
-        `} */}
       </Markdown>
     </Layout>
   )
