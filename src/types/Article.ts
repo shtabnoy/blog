@@ -16,7 +16,7 @@ export interface Translation {
   content: string
 }
 
-export default interface Article {
+export interface Article {
   id: string
   title: string
   published: string

@@ -1,22 +1,22 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import { User } from "../types"
 // import SEO from "../components/seo"
-
-interface StrapiUser {
-  id: string
-  username: string
-  email: string
-  fullName: string
-}
 
 interface UserPageProps {
   data: {
-    strapiUser: StrapiUser
+    strapiUser: User
+  }
+  location: {
+    pathname: string
   }
 }
 
-const UserPage = ({ data: { strapiUser: author } }: UserPageProps) => {
+const UserPage = ({
+  data: { strapiUser: author },
+  location,
+}: UserPageProps) => {
   return (
     <Layout pathname={location.pathname}>
       {author.fullName} - {author.email}

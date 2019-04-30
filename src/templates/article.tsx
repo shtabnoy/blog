@@ -3,14 +3,16 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Markdown from "markdown-to-jsx"
 import * as MathJax from "@nteract/mathjax"
-// import SEO from "../components/seo"
-import { Translation } from "../types/Article"
+import { Article, Translation } from "../types"
 import css from "@emotion/css"
 import ArticleHeader from "../components/articleHeader"
 import colors from "../utils/colors"
+// import SEO from "../components/seo"
 
 interface ArticlePageProps {
-  data: any // TODO: proper
+  data: {
+    strapiArticle: Article
+  }
   location: {
     pathname: string
   }
