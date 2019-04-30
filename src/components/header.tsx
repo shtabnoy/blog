@@ -4,7 +4,7 @@ import styled from "@emotion/styled"
 import { keyframes, css } from "@emotion/core"
 import colors from "../utils/colors"
 import { logoPath, backArrowPoints } from "../utils/path"
-import SearchIcon from "./searchIcon"
+import SearchIcon from "./SearchIcon"
 
 const dash = keyframes`
   to {
